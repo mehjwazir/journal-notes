@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Note as NoteModel} from './models/note';
 import Note from './components/Note';
 import { Col, Container, Row } from 'react-bootstrap';
+import styles from "/styles/NotesPage.module.css"
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
 
         {notes.map(note => (
           <Col key={note._id} >
-            <Note note={note} />
+            <Note note={note} className={styles.note} />
         </Col>
      
       ))}

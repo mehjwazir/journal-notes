@@ -6,10 +6,11 @@ import { Note as NoteModel } from "../models/note";
 
 interface NoteProps {
 	note: NoteModel,
+	className?: string,
 }
 
 
-const Note = ({ note }: NoteProps) => {
+const Note = ({ note, className }: NoteProps) => {
 
 	const {
 		title,
@@ -24,7 +25,7 @@ const Note = ({ note }: NoteProps) => {
 				<Card.Title>
 					{title}
 				</Card.Title>
-				<Card.Text className={styles.cardText}>
+				<Card.Text className={`${styles.cardText} ${className}`}>
 					{text}
 				</Card.Text>
 			</Card.Body>
