@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     async function loadNotes() {
       try {
+       
         const notes = await NotesApi.fetchNotes();
         setNotes(notes);
       } catch (error) {
