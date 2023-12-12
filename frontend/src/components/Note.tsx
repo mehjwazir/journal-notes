@@ -21,7 +21,7 @@ const Note = ({ note, className }: NoteProps) => {
 
 	return (
 		<Card className={styles.noteCard}>
-			<Card.Body>
+			<Card.Body className={styles.cardBody}>
 				<Card.Title>
 					{title}
 				</Card.Title>
@@ -29,7 +29,11 @@ const Note = ({ note, className }: NoteProps) => {
 					{text}
 				</Card.Text>
 			</Card.Body>
+			<Card.Footer className="text-muted">
+				{createdAt}
+			</Card.Footer>
 		</Card>
+		
 	)
 }
 
