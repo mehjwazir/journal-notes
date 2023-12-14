@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Note as NoteModel} from './models/note';
 import Note from './components/Note';
-import { Col, Container, Row, Button } from 'react-bootstrap';
-import styles from "/styles/NotesPage.module.css"
+import { Col, Container, Row, Button, } from 'react-bootstrap';
+import styles from "./styles/NotesPage.module.css"
 import * as NotesApi from "./network/notes_api";
 import AddNoteDialog from './components/AddNoteDialog';
 
@@ -45,6 +45,10 @@ function App() {
       {showAddNoteDialog &&
         <AddNoteDialog 
         onDismiss={() => setShowAddNoteDialog(false)}
+        onNoteSaved={(newNote) => {
+          setNotes([...notes, newNote]);
+          setShowAddNoteDialog(false);
+        }}
       />
       }
     </Container>
