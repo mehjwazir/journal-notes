@@ -30,6 +30,7 @@ function App() {
   return (
     <Container>
       <Button
+        className='mb-4'
         onClick={() => setShowAddNoteDialog(true)}>
         Add new note
 </Button>
