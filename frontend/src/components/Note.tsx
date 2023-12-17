@@ -10,11 +10,12 @@ import { MdDelete } from 'react-icons/md';
 
 interface NoteProps {
 	note: NoteModel,
+	onDeleteNoteClicked: (note: NoteModel) => void,
 	className?: string,
 }
 
 
-const Note = ({ note, className }: NoteProps) => {
+const Note = ({ note, onDeleteNoteClicked, className }: NoteProps) => {
 
 	const {
 		title,
@@ -38,7 +39,12 @@ const Note = ({ note, className }: NoteProps) => {
 				<Card.Title className={styleUtils.flexCenter}>
 					{title}
 					<MdDelete
-					className="text-muted ms-auto"/>
+						className="text-muted ms-auto"
+						onClick={(e) => {
+							onDeleteNoteClicked(note);
+							e.stopPropagation();
+						}}
+					/>
 				</Card.Title>
 				<Card.Text className={`${styles.cardText} ${className}`}>
 					{text}
