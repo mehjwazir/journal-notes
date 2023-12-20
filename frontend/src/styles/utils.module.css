@@ -1,4 +1,4 @@
-.blcokCenter {
+.blockCenter {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -9,4 +9,8 @@
 	align-items: center;
 	justify-content: center;
 	gap: 4px;
+}
+
+.width100 {
+	width: 100%;
 }
