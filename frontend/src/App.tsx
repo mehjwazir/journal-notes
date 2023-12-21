@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Note as NoteModel} from './models/note';
 import Note from './components/Note';
-import { Col, Container, Row, Button, } from 'react-bootstrap';
+import { Col, Container, Row, Button, Spinner } from 'react-bootstrap';
 import styles from "./styles/NotesPage.module.css";
 import styleUtils from "./styles/utils.module.css";
 import * as NotesApi from "./network/notes_api";
 import AddNoteDialog from './components/AddEditNoteDialog';
 import { FaPlus } from "react-icons/fa";
 import AddEditNoteDialog from './components/AddEditNoteDialog';
+
 
 function App() {
 
@@ -48,6 +49,22 @@ function App() {
     
   }
 
+  const notesGrid =
+    <Row xs={1} md={2} x1={3} className='g-4'>
+      {notes.map(note => (
+        <Col key={note._id} >
+          <Note note={note}
+            className={styles.note}
+            onNoteClicked={setNoteToEdit}
+            onDeleteNoteClicked={deleteNote}
+          />
+        </Col>
+
+      ))}
+    </Row>
+
+
+
   return (
     <Container>
       <Button
@@ -55,20 +72,18 @@ function App() {
         onClick={() => setShowAddNoteDialog(true)}>
         <FaPlus />
         Add new note
-</Button>
+      </Button>
+      {notesLoading && <Spinner animation='border' variant='primary' />}
+      {showNotesLoadingError && <p>Somethin went wrong. Please refresh the page.</p>}
+      {!notesLoading && !showNotesLoadingError && 
+        <>
+        {notes.length > 0
+          ? notesGrid
+          : <p>You don't have any notes yet</p>
 
-      <Row xs={1} md={2} x1={3} className='g-4'>
-        {notes.map(note => (
-          <Col key={note._id} >
-            <Note note={note}
-              className={styles.note}
-              onNoteClicked={setNoteToEdit}
-              onDeleteNoteClicked={deleteNote}
-            />
-        </Col>
-     
-      ))}
-      </Row>
+        }
+        </>
+      }
       {showAddNoteDialog &&
         <AddNoteDialog 
         onDismiss={() => setShowAddNoteDialog(false)}
