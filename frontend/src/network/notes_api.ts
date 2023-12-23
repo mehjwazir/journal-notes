@@ -1,4 +1,5 @@
 import { Note } from "../models/note";
+import { User } from "../models/user";
 
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
@@ -11,6 +12,15 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 		throw Error(errorMessage);
 	}
 }
+
+export async function getLoggedInUser(): Promise<User> {
+	const response = await fetchData("/api/users", {method: "GET"});
+	return response.json();
+	
+}
+
+
+
 	export async function fetchNotes(): Promise<Note[]> {
 		const response = await fetchData("/api/notes", { method: "GET" });
 		return response.json();
