@@ -58,6 +58,11 @@ export async function login(credentials: SignUpCredentials): Promise<User> {
 }
 
 
+
+export async function logout() {
+	await fetchData("/api/users/logout", { method: "POST" });
+}
+
 	export async function fetchNotes(): Promise<Note[]> {
 		const response = await fetchData("/api/notes", { method: "GET" });
 		return response.json();
