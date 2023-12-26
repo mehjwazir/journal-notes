@@ -56,16 +56,14 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
 					
 					/>
 
-					<Form.Group className="mb-3">
-						<Form.Label>Text</Form.Label>
-						<Form.Control
-							as="textarea"
-							rows={5}
-							placeholder="Text"
-							{ ...register("text")}
-
-						/>
-					</Form.Group>
+					<TextInputField
+						name="text"
+						label="Text"
+						as="textarea"
+						rows={5}
+						placeholder="Text"
+						register={register}
+					/>
 				</Form>
 			</Modal.Body>
 
