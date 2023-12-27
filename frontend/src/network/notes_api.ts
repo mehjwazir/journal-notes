@@ -32,7 +32,7 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
 		
 			method: "POST",
 			headers: {
-				"Content - Type": "application/json",
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(credentials),
 		});
@@ -50,7 +50,7 @@ export async function login(credentials: SignUpCredentials): Promise<User> {
 
 			method: "POST",
 			headers: {
-				"Content - Type": "application/json",
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(credentials),
 		});
