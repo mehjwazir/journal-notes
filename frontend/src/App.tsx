@@ -9,6 +9,7 @@ import AddNoteDialog from './components/AddEditNoteDialog';
 import { FaPlus } from "react-icons/fa";
 import AddEditNoteDialog from './components/AddEditNoteDialog';
 import SignUpModal from './components/SignUpModal';
+import LoginModal from './components/LoginModal';
 
 
 function App() {
@@ -105,12 +106,20 @@ function App() {
         />
       }
 
-      { true && 
+      { false && 
         <SignUpModal
         onDismiss={() => { }}
         onSignUpSuccessful={() => { }}
         />
       }
+      {false &&
+        <LoginModal
+        onDismiss={() => { }}
+        onLoginSuccessful={() => {} }
+      />
+      }
+
+
     </Container>
   );
 }
