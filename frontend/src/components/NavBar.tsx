@@ -1,5 +1,7 @@
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { User } from "../models/user";
+import NavBarLoggedOutView from "./NavBarLoggedOutView";
+import NaveBarLoggedInView from "./NavBarLoggedInView";
 
 
 interface NavBarProps {
@@ -16,11 +18,20 @@ const  NavBar = ({loggedInUser, onSignUpClicked, onLogInClicked, onLogoutSuccess
 	
 
 	return (
-		<Navbar bg="primary" variant="dark" expand="lg" sticky="top">
+		<Navbar bg="primary" variant="dark" expand="sm" sticky="top">
 			<Container>
 				<Navbar.Brand>
 					Journal Notes
 				</Navbar.Brand>
+				<Navbar.Toggle aria-controls="main-navbar" />
+				<Navbar.Collapse id="main-navbar">
+					<Nav className="ms-auto">
+						{loggedInUser
+							? <NaveBarLoggedInView user={loggedInUser} onLogoutSuccessful={onLogoutSuccessful} />
+							: <NavBarLoggedOutView onLoginClicked={onLogInClicked} onSignUpClicked={onSignUpClicked} />
+						}
+					</Nav>
+				</Navbar.Collapse>
 			</Container>
 		</Navbar>
 	  );
