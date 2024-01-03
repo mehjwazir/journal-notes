@@ -27,7 +27,7 @@ const NaveBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewPro
 				Signed in as: {user.username}
 
 			</Navbar.Text>
-			<Button onClick={logout}></Button>
+			<Button variant='success' onClick={logout}>Logout</Button>
 		</>
 	 );
 }

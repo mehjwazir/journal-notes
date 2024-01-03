@@ -72,6 +72,7 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
 					type="submit"
 					form="addEditNoteForm"
 					disabled={isSubmitting}
+					variant='success' 
 				>
 					Save
 				</Button>

@@ -18,7 +18,7 @@ const  NavBar = ({loggedInUser, onSignUpClicked, onLogInClicked, onLogoutSuccess
 	
 
 	return (
-		<Navbar bg="primary" variant="dark" expand="sm" sticky="top">
+		<Navbar bg="success" variant="dark" expand="sm" sticky="top">
 			<Container>
 				<Navbar.Brand>
 					Journal Notes

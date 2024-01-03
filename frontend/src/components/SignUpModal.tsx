@@ -69,7 +69,8 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
 					<Button
 						type="submit"
 						disabled={isSubmitting}
-						className={styleUtils.width100}>
+						className={styleUtils.width100}
+						variant="success">
 						Sign Up
 					</Button>
 				</Form>
