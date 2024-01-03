@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.jn-img-div{
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+.jn-img {
+  height: 50%;
+  width: 50%;
+
+}
+
