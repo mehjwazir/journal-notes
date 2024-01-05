@@ -1,4 +1,4 @@
-import Img1 from "./img/Journal Notes.png"
+import Img1 from "./img/Journal Notes2.png"
 
 
 
