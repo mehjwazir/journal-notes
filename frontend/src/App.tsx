@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import LoginModal from './components/LoginModal';
 import NavBar from './components/NavBar';
-import NotesPageLoggedInView from './components/NotesPageLoggedInView';
-import NotesPageLoggedOutView from './components/NotesPageLoggedOutView';
 import SignUpModal from './components/SignUpModal';
 import { User } from './models/user';
 import * as NotesApi from "./network/notes_api";
-import styles from "./styles/NotesPage.module.css";
+import { BrowserRouter } from 'react-router-dom';
+
 
 function App() {
 
@@ -31,6 +29,7 @@ function App() {
   }, [])
 
   return (
+    <BrowserRouter>
     <div>
       <NavBar
         loggedInUser={loggedInUser}
@@ -40,15 +39,7 @@ function App() {
 
 
       />
-      <Container className={styles.notesPage}>
-
-        <>
-          {loggedInUser
-            ? <NotesPageLoggedInView />
-            : <NotesPageLoggedOutView />
-          }
-        </>
-      </Container>
+      
 
       {showSignUpModal &&
         <SignUpModal
@@ -69,7 +60,8 @@ function App() {
           }}
         />
       }
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
