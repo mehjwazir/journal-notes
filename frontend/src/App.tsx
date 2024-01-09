@@ -4,7 +4,12 @@ import NavBar from './components/NavBar';
 import SignUpModal from './components/SignUpModal';
 import { User } from './models/user';
 import * as NotesApi from "./network/notes_api";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import PrivacyPage from './pages/PrivacyPage';
+import NotFoundPage from './pages/NotFoundPage';
+import NotesPage from './pages/NotesPage';
+import styles from './styles/App.module.css';
 
 
 function App() {
@@ -39,7 +44,23 @@ function App() {
 
 
       />
-      
+        <Container className={styles.pageContainer}>
+          <Routes>
+            <Route
+              path='/'
+              element={<NotesPage loggedInUser={loggedInUser} />}
+            />
+
+            <Route
+              path='/privacy'
+              element={<PrivacyPage />}
+            />
+            <Route
+              path='/*'
+              element={<NotFoundPage />}
+            />
+          </Routes>
+      </Container>
 
       {showSignUpModal &&
         <SignUpModal
