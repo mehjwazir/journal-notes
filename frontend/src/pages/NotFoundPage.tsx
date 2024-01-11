@@ -1,6 +1,6 @@
 const NotFoundPage = () => {
 	return ( 
-		<div>
+		<div className="d-flex justify-content-center mt-5">
 			<p>Page not found</p>
 		</div>
 	 );

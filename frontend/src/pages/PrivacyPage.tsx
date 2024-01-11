@@ -1,6 +1,6 @@
 const PrivacyPage = () => {
 	return ( 
-		<div>
+		<div className="d-flex justify-content-center mt-5">
 			<p>We care about your privacy. Promise!</p>
 		</div>
 	 );
