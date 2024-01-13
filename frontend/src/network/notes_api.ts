@@ -21,7 +21,10 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users", {method: "GET"});
+	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users", {
+		method: "GET",
+		credentials: 'include',
+	});
 	return response.json();
 	
 }
@@ -39,6 +42,7 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
 		{
 		
 			method: "POST",
+			credentials: 'include',
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -57,6 +61,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 		{
 
 			method: "POST",
+			credentials: 'include',
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -85,6 +90,7 @@ export async function createNote(note: NoteInput): Promise<Note> {
 	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes",
 		{
 			method: "POST",
+			credentials: 'include',
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -98,6 +104,7 @@ export async function updateNote(noteId: string, note: NoteInput): Promise<Note>
 	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes/" + noteId,
 		{
 			method: "PATCH",
+			credentials: 'include',
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -107,6 +114,9 @@ export async function updateNote(noteId: string, note: NoteInput): Promise<Note>
 }
 
 export async function deleteNote(noteId: string) {
-	await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes/" + noteId, { method: "DELETE" });
+	await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes/" + noteId, {
+		method: "DELETE",
+		credentials: 'include',
+	});
 	
 }
