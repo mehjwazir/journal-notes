@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import session from "express-session";
 import createHttpError, { isHttpError } from "http-errors";
 import morgan from "morgan";
+import cors from "cors";
 import { requiresAuth } from './middleware/auth';
 import notesRoutes from "./routes/notes";
 import userRoutes from "./routes/users";
@@ -12,6 +13,8 @@ import env from "./util/validateEnv";
 
 
 const app = express();
+
+app.use(cors());
 
 app.use(morgan("dev"));
 
