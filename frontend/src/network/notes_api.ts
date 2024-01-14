@@ -3,7 +3,15 @@ import { Note } from "../models/note";
 import { User } from "../models/user";
 
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+console.log('Backend URL:', backendUrl);
+
 async function fetchData(input: RequestInfo, init?: RequestInit) {
+
+	console.log('Request URL:', input); 
+	
+	console.log('Request Options:', init); 
+
 	const response = await fetch(input, init);
 	if (response.ok) {
 		return response;
@@ -21,7 +29,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users", {
+	const response = await fetchData(backendUrl + "/api/users", {
 		method: "GET",
 		credentials: "include",
 	});
@@ -37,7 +45,7 @@ export interface SignUpCredentials {
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users/signup",
+	const response = await fetchData(backendUrl + "/api/users/signup",
 
 		{
 		
@@ -48,6 +56,8 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
 			},
 			body: JSON.stringify(credentials),
 		});
+	
+	console.log('Signup response:', response);
 	return response.json();
 }
 
@@ -57,7 +67,7 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users/login",
+	const response = await fetchData(backendUrl + "/api/users/login",
 		{
 
 			method: "POST",
@@ -73,11 +83,13 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 
 
 export async function logout() {
-	await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/users/logout", { method: "POST" });
+	await fetchData( "/api/users/logout", {
+		method: "POST"
+	});
 }
 
 	export async function fetchNotes(): Promise<Note[]> {
-		const response = await fetchData("/api/notes", {
+		const response = await fetchData(backendUrl + "/api/notes", {
 			method: "GET",
 			credentials: "include",
 		});
@@ -90,7 +102,7 @@ export interface NoteInput {
 }
 
 export async function createNote(note: NoteInput): Promise<Note> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes",
+	const response = await fetchData(backendUrl + "/api/notes",
 		{
 			method: "POST",
 			credentials: "include",
@@ -104,7 +116,7 @@ export async function createNote(note: NoteInput): Promise<Note> {
 
 
 export async function updateNote(noteId: string, note: NoteInput): Promise<Note> {
-	const response = await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes/" + noteId,
+	const response = await fetchData(backendUrl + "/api/notes/" + noteId,
 		{
 			method: "PATCH",
 			credentials: "include",
@@ -117,7 +129,7 @@ export async function updateNote(noteId: string, note: NoteInput): Promise<Note>
 }
 
 export async function deleteNote(noteId: string) {
-	await fetchData(process.env.REACT_APP_BACKEND_URL + "/api/notes/" + noteId, {
+	await fetchData(backendUrl + "/api/notes/" + noteId, {
 		method: "DELETE",
 		credentials: "include",
 		
