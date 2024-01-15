@@ -14,12 +14,7 @@ import env from "./util/validateEnv";
 
 const app = express();
 
-app.use(cors({
-	origin: 'https://journal-notes-backend.up.railway.app',
-	methods: ["GET", "POST"],
-	
-})
-);
+app.use(cors());
 
 app.use(morgan("dev"));
 
