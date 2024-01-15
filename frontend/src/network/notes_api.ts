@@ -3,8 +3,8 @@ import { Note } from "../models/note";
 import { User } from "../models/user";
 
 
-// const backendUrl = process.env.REACT_APP_BACKEND_URL;
-// console.log('Backend URL:', backendUrl);
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+console.log('Backend URL:', backendUrl);
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
 
@@ -29,9 +29,9 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-	const response = await fetchData( "/api/users", {
+	const response = await fetchData(backendUrl + "/api/users", {
 		method: "GET",
-		// credentials: "include",
+		credentials: "include",
 	});
 	return response.json();
 	
@@ -45,12 +45,12 @@ export interface SignUpCredentials {
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-	const response = await fetchData( "/api/users/signup",
+	const response = await fetchData(backendUrl + "/api/users/signup",
 
 		{
 		
 			method: "POST",
-			// credentials: "include",
+			credentials: "include",
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -67,11 +67,11 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-	const response = await fetchData("/api/users/login",
+	const response = await fetchData(backendUrl + "/api/users/login",
 		{
 
 			method: "POST",
-			// credentials: "include",
+			credentials: "include",
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -83,15 +83,16 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 
 
 export async function logout() {
-	await fetchData( "/api/users/logout", {
-		method: "POST"
+	await fetchData(backendUrl + "/api/users/logout", {
+		method: "POST",
+		credentials: "include",
 	});
 }
 
 	export async function fetchNotes(): Promise<Note[]> {
-		const response = await fetchData("/api/notes", {
+		const response = await fetchData(backendUrl + "/api/notes", {
 			method: "GET",
-			// credentials: "include",
+			credentials: "include",
 		});
 		return response.json();
 	}
@@ -102,10 +103,10 @@ export interface NoteInput {
 }
 
 export async function createNote(note: NoteInput): Promise<Note> {
-	const response = await fetchData( "/api/notes",
+	const response = await fetchData(backendUrl + "/api/notes",
 		{
 			method: "POST",
-			// credentials: "include",
+			credentials: "include",
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -116,10 +117,10 @@ export async function createNote(note: NoteInput): Promise<Note> {
 
 
 export async function updateNote(noteId: string, note: NoteInput): Promise<Note> {
-	const response = await fetchData("/api/notes/" + noteId,
+	const response = await fetchData(backendUrl + "/api/notes/" + noteId,
 		{
 			method: "PATCH",
-			// credentials: "include",
+			credentials: "include",
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -129,9 +130,9 @@ export async function updateNote(noteId: string, note: NoteInput): Promise<Note>
 }
 
 export async function deleteNote(noteId: string) {
-	await fetchData( "/api/notes/" + noteId, {
+	await fetchData(backendUrl + "/api/notes/" + noteId, {
 		method: "DELETE",
-		// credentials: "include",
+		credentials: "include",
 		
 	});
 	
