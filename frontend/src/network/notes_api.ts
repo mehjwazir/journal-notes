@@ -3,7 +3,13 @@ import { Note } from "../models/note";
 import { User } from "../models/user";
 
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+let backendUrl: string;
+
+if (process.env.NODE_ENV === 'development') {
+	backendUrl = 'http://localhost:5000'
+} else {
+	backendUrl = process.env.REACT_APP_BACKEND_URL as string
+}
 console.log('Backend URL:', backendUrl);
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
