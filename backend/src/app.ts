@@ -12,12 +12,20 @@ import env from "./util/validateEnv";
 
 
 
+
 const app = express();
 
+let origin: string;
+
+if (process.env.NODE_ENV === 'development') {
+	origin = 'http://localhost:3000'
+} else {
+	origin = process.env.REACT_APP_FRONTEND_URL as string;
+}
+
 app.use(cors({
-	origin: 'https://journal-notes.up.railway.app',
-	credentials: true,
-	
+	origin,
+	credentials: true,	
 })
 );
 
